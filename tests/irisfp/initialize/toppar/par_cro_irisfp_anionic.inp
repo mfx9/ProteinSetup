@@ -1,0 +1,230 @@
+* IrisFP chromophore
+*
+
+! Modified file from:
+!  http://lists.gromacs.org/pipermail/gmx-users/2011-February/058815.html
+!
+
+! GFP Chromophore parameters, anionic form
+!
+BONDS
+!
+!V(bond) = Kb(b - b0)**2
+!
+!Kb: kcal/mole/A**2
+!b0: A
+!
+!atom type Kb          b0
+CA1  CA2   305.0       1.455
+CA2  CA3   305.0       1.455
+CA3  CA4   305.0       1.455
+HPc  CA1   340.000     1.08
+HPc  CA2   340.000     1.08
+HPc  CA3   340.000     1.08
+HPc  CA4   340.000     1.08
+Ohc  Hch   545         0.96   ! Neutral
+Ohc  CA4   334.3       1.411  ! Neutral
+HA1c CE1c  360.500     1.10
+NR1c CP1c  400.000     1.41
+NR1c CP2c  400.000     1.39
+NR2c CP2c  400.000     1.30
+NR2c CP1c  400.000     1.40
+CP1c CP1c  410.0       1.460
+CP1c CE1c  500.0       1.390
+CP1c Och   854.0       1.240
+CE1c CA1   437.0       1.410
+NR1c CT2   396.0       1.440
+CP2c CT1   354.0       1.490
+!
+! Added by Mfx
+H    NR2c  453         1.01 ! Similar to H--NR3 in HSP
+OCH  CA4   842.0       1.250
+
+
+ANGLES
+!
+!V(angle) = Ktheta(Theta - Theta0)**2
+!
+!V(Urey-Bradley) = Kub(S - S0)**2
+!
+!Ktheta: kcal/mole/rad**2
+!Theta0: degrees
+!Kub: kcal/mole/A**2 (Urey-Bradley)
+!S0: A
+!
+!atom types     Ktheta    Theta0   Kub     S0
+!
+NR2c CP2c NR1c   130.0     113.3
+CP2c NR2c CP1c   130.0     106.6
+CP2c NR1c CP1c   130.0     107.9
+NR2c CP1c CP1c   130.0     108.3
+NR2c CP1c CE1c    45.8     129.5
+NR1c CP1c OcH     50.0     124.0
+NR1c CP1c CP1c   130.0     103.0
+OcH  CP1c CP1c    44.0     133.0
+CP1c CP1c CE1c    45.8     120.0
+CP1c CE1c CA1    130.0     133.2
+CP1c CE1c HA1c    42.0     112.0
+CE1c CA1  CA2     45.8     120.0
+HA1c CE1c CA1     42.0     115.0
+CA1  CA2  CA3   40.000    120.00   35.00   2.41620   !
+CA2  CA1  CA2   40.000    120.00   35.00   2.41620   !
+CA2  CA3  CA4   40.000    120.00   35.00   2.41620   !
+CA3  CA4  CA3   40.000    120.00   35.00   2.41620   !
+!
+HPc  CA3  CA4   30.000    120.00   22.00   2.15250   !
+HPc  CA3  CA2   30.000    120.00   22.00   2.15250   !
+HPc  CA2  CA3   30.000    120.00   22.00   2.15250   !
+HPc  CA2  CA1   30.000    120.00   22.00   2.15250   !
+!
+Ohc  CA4  CA3   45.200   120.0000 ! ALLOW   ARO ALC
+HcH  Ohc  CA4   65.000   108.0000 ! ALLOW   ALC ARO
+!
+!Connection to the ser fragment
+!------------------------------
+CT2  CT1  CP2c    52.000   108.0000 ! ALLOW   ALI PEP POL ARO
+HB   CT1  CP2c  50.000   109.5000 ! ALLOW  PEP
+NH1  CT1  CP2c  50.000   107.0000 ! ALLOW   PEP POL ARO ALI
+NR2C CP2C CT1   40.00    125.00   !
+NR1C CP2C CT1   35.00    121.40   !
+!
+!Connection to the gly fragment
+!------------------------------
+NR1C CT2  C     50.000   107.0000
+NR1c CT2  HB    48.000   108.0000
+CP2C NR1C CT2   36.00    129.00
+CP1C NR1C CT2   32.00    123.40
+!
+! Added by Mfx
+CP2C  NR2C  H   100.0     127.0
+CP1C  NR2C  H   100.0     127.0
+OCH  CA4  CA3   45.200   120.0000 ! ALLOW   ARO ALC
+HcH  OCH  CA4   65.000   108.0000 ! ALLOW   ALC ARO
+
+
+DIHEDRALS
+!
+!V(dihedral) = Kchi(1 + cos(n(chi) - delta))
+!
+!Kchi: kcal/mole
+!n: multiplicity
+!delta: degrees
+!
+!atom types             Kchi    n   delta
+!
+CP2C NR2C CP1C CP1C    14.0000  2   180.00 !
+CP2C NR1C CP1C CP1C    14.0000  2   180.00 !
+NR2C CP2C NR1C CP1C    14.0000  2   180.00 !
+NR2C CP1C CP1C NR1C     4.0000  2   180.00 !
+NR1C CP2C NR2C CP1C     4.0000  2   180.00 !
+CA1  CA2  CA3  CA4      3.1000  2   180.00 !
+CA2  CA1  CA2  CA3      3.1000  2   180.00 !
+CA2  CA3  CA4  CA3      3.1000  2   180.00 !
+!OCh CAC  CAC  CAC      3.1000  2   180.00 !
+CA2  CA3  CA4  OhC      3.1000  2   180.00 !
+CA1  CA2  CA3  HPC      4.2000  2   180.00 !
+CA2  CA1  CA2  HPC      4.2000  2   180.00 !
+CA3  CA4  CA3  HPC      4.2000  2   180.00 !
+HPC  CA2  CA3  CA4      4.2000  2   180.00 !
+HPC  CA2  CA3  HPC      2.4000  2   180.00 !
+!HCH  OCh CAC  CAC      0.9900  2   180.00 !
+HCH  OhC CA4  CA3       0.9900  2   180.00 !
+HPC  CA3  CA4  OhC      4.2000  2   180.00 !
+!
+CP2C NR2C CP1C CE1C     3.000   2   180.00 !
+NR1C CP1C CP1C CE1C     3.00    2   180.00 !
+OCH  CP1C CP1C CE1C     2.00    2   180.00 !
+CE1C CA1  CA2  HPC      4.20    2   180.00 !
+CE1C CA1  CA2  CA3      3.10    2   180.00 !
+!
+!barrier CA-CB
+CP1C CP1C CE1C HA1C     3.90   2   180.0
+CP1C CP1C CE1C CA1      3.90   2   180.0
+NR2C CP1C CE1C HA1C     3.90   2   180.0
+NR2C CP1C CE1C CA1      3.90   2   180.0
+!
+!barrier CB-CG2
+CP1C CE1C CA1  CA2      2.70   2   180.0
+HA1C CE1C CA1  CA2      2.70   2   180.0
+!
+CP2C NR1C CP1C OCH      14.00    2   180.00 !
+NR2C CP2C NR1C CT2      14.00    2   180.00 !
+NR2C CP1C CP1C OCH      14.00    2   180.00 !
+CP1C NR1C CP2C CT1      14.00    2   180.00 !
+OCH  CP1C NR1C CT2      14.00    2   180.00 !
+CP1C NR2C CP2C CT1      14.00    2   180.00 !
+CP1C CP1C NR1C CT2      14.00    2   180.00 !
+CT1  CP2C NR1C CT2      14.00    2   180.00 !
+!
+! Linking the chromophore and the glycine fragment
+O    C    CT2  NR1C      0.0000  1     0.00 !
+NH1  C    CT2  NR1c      0.6000  1     0.00 !
+CP2C NR1C CT2 HB        0.032  3     0.00
+CP2c NR1c CT2 C         0.032  3     0.00
+CP1c NR1c CT2 HB        0.032  3   180.00
+CP1c NR1c CT2 C         0.032  3   180.00
+!
+! Linking the chromophore and the serine fragment
+C    NH1  CT1  CP2C      0.2000  1   180.00  !
+H    NH1  CT1  CP2C      0.0000  1     0.00  !
+NR2C CP2C CT1 HB       0.105   3   180.00
+NR2C CP2C CT1 NH1      0.105   3   180.00
+NR2C CP2C CT1 CT2      0.105   3   180.00
+NR1C CP2C CT1 HB       0.105   3     0.00
+NR1C CP2C CT1 NH1      0.105   3     0.00
+NR1C CP2C CT1 CT2      0.105   3     0.00
+!
+! Added by Mfx
+NR1C  CP2C  NR2C  H     10.0     1   180.0  ! Guess
+CP1C  CP1C  NR2C  H     10.0     1   180.0  ! Guess
+H     NR2C  CP2C  CT1   10.0     1   180.0  ! Guess
+H     NR2C  CP1C  CE1C  10.0     1   180.0  ! Guess
+HPC  CA3  CA4  OCH      4.2000  2   180.00 !
+CA2  CA3  CA4  OCH      3.1000  2   180.00 !
+
+
+IMPROPER
+!
+!V(improper) = Kpsi(psi - psi0)**2
+!
+!Kpsi: kcal/mole/rad**2
+!psi0: degrees
+!note that the second column of numbers (0) is ignored
+!
+!atom types           Kpsi                   psi0
+!
+CP2C NR2C NR1C CT1   50.0    0    0.00
+CP2C NR1C NR2C CT1   50.0    0    0.00
+!
+CP1C NR1C CP1C OCH   50.0    0    0.00
+CP1C CP1C NR1C OCH   50.0    0    0.00
+!
+NR1C CP1C CP2C CT2   50.0    0    0.00
+NR1C CP2C CP1C CT2   50.0    0    0.00
+!
+CP1C NR2C CP1C CE1C  50.0    0    0.00
+CP1C CP1C NR2C CE1C  50.0    0    0.00
+!
+CE1C CP1C CA1  HA1C  30.0    0    0.00
+CE1C CA1  CP1C HA1C  30.0    0    0.00
+
+
+NONB nbxmod  5 atom cdiel shift vatom vdistance vswitch cutnb 14.0 ctofnb 12.0 ctonnb 10.0 eps 1.0 e14fac 1.0 wmin 1.5
+!
+CA4    0.0000    -0.0700   1.9924                                 !    CA
+CE1c   0.0000    -0.0680   2.0900                                 !   CE1
+CP1c   0.0000    -0.0500   1.8000                                 !  CPH1
+CP2c   0.0000    -0.0500   1.8000                                 !  CPH2
+HCH    0.0000    -0.0460   0.2245                                 !     H
+HPc    0.0000    -0.0300   1.3582    0.0000    -0.0300   1.3582   !    HP
+HA1c   0.0000    -0.0220   1.3200                                 !   HA1
+NR1c   0.0000    -0.2000   1.8500                                 !   NR1
+NR2c   0.0000    -0.2000   1.8500                                 !   NR2
+CA1    0.0000    -0.0700   1.9924   ! CA
+CA2    0.0000    -0.0700   1.9924   ! CA
+CA3    0.0000    -0.0700   1.9924   ! CA
+!
+OHc    0.0000    -0.1521   1.7700                                 ! OH1 / ALLOW   ALC ARO
+OCh    0.0000    -0.1200   1.7000    0.0000    -0.1200   1.4000   !     O
+!  CT3C
+!  HAC
