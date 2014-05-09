@@ -1,0 +1,58 @@
+* Glycerol
+*  (this file I got from Matthias)
+*
+ 27 1
+
+!MASS 1 H 1.00800! Hydrogen bonding hydrogen (neutral group)
+!MASS 3 HA 1.00800! Aliphatic or aromatic hydrogen
+!MASS 10 CT 12.01100! Aliphatic carbon (tetrahedral)
+!MASS 45 OT 15.99940! Hydroxyl oxygen (tetra.)/Ionizable acid - oxygen
+
+! Autogenerate all angles in the topology definitions
+AUTOGEN ANGLES DIHE
+
+! During generation, provide no patches on the terminal
+! residues
+DEFAULT FIRST NONE LAST NONE
+
+! Topology definition for glycerol
+RESIDUE GOL 0.0 
+GROUP               !     H11 O1 -- H1
+ ATOM C1 CT2   0.05 !      \ /
+ ATOM H11 HA   0.10 !       C1
+ ATOM H12 HA   0.10 !      / \
+ ATOM O1  OH1 -0.65 !    H12  \
+ ATOM H1  H    0.40 !         |
+GROUP               !         |
+ ATOM C2  CT2  0.15 !         |
+ ATOM H21 HA   0.10 !  H21 -- C2 -- O2 -- H2
+ ATOM O2  OH1 -0.65 !         |
+ ATOM H2  H    0.40 !         |
+GROUP               !         |
+ ATOM C3 CT2   0.05 !     H31 /
+ ATOM H31 HA   0.10 !      \ /
+ ATOM H32 HA   0.10 !       C3
+ ATOM O3  OH1 -0.65 !      / \
+ ATOM H3  H    0.40 !     H32 O3 -- H3
+
+BOND C1 H11 C1 H12 C1 O1 O1 H1
+BOND C1 C2
+BOND C2 H21 C2 O2 O2 H2
+BOND C2 C3
+BOND C3 H31 C3 H32 C3 O3 O3 H3
+
+! Internal coordinate definitions
+IC H1 O1 C1 C2 0.0000 0.00 180.00 0.00 0.0000
+IC O1 C1 C2 C3 0.0000 0.00 180.00 0.00 0.0000
+IC H2 O2 C2 C1 0.0000 0.00 180.00 0.00 0.0000
+IC O3 C3 C2 C1 0.0000 0.00 180.00 0.00 0.0000
+IC H3 O3 C3 C2 0.0000 0.00 180.00 0.00 0.0000
+! what is "*" here??
+IC O1 C2 *C1 H11 0.0000 0.00 120.00 0.00 0.0000
+IC O1 C2 *C1 H12 0.0000 0.00 240.00 0.00 0.0000
+IC C3 C1 *C2 O2 0.0000 0.00 120.00 0.00 0.0000
+IC C3 C1 *C2 H21 0.0000 0.00 240.00 0.00 0.0000
+IC O3 C2 *C3 H31 0.0000 0.00 120.00 0.00 0.0000
+IC O3 C2 *C3 H32 0.0000 0.00 240.00 0.00 0.0000
+
+END

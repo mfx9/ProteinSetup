@@ -1,0 +1,20 @@
+f=1R9D.pdb
+
+sed -nre "s/^HETATM/ATOM  / ; /^ATOM/p" $f | sed -re " /^.{16}B|^.{12}(H[DEGH]| H)/d" | sed -e "s/^\(.\{16\}\)A/\1 /" > atoms
+
+grep -E "^.{21}A" atoms > A
+
+grep -Ev "GOL|HOH" A | ./segid PRTA | sed -f replace.sed  > A_chain.pdb
+
+grep "GOL" A | ./segid GOLA | sed -e "
+s/C1  GOL/CX  GOL/
+s/O1  GOL/OX  GOL/
+s/C3  GOL/C1  GOL/
+s/O3  GOL/O1  GOL/
+s/CX  GOL/C3  GOL/
+s/OX  GOL/O3  GOL/
+" > A_gol.pdb
+
+grep "HOH" A | ./pdb_recount 1 | ./segid WATA > A_wat.pdb
+
+rm atoms A

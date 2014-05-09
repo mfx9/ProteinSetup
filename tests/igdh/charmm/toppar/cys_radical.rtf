@@ -1,0 +1,63 @@
+* Radical cysteine, to be used in GREs
+*  M. Feliks, March 2012 
+*
+31 1
+
+DECL -CA
+DECL -C
+DECL -O
+DECL +N
+DECL +H
+DECL +CA
+
+DEFA FIRS NTER LAST CTER
+AUTO ANGLES DIHE
+
+!^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+! residue
+RESI CYR          0.00
+GROUP   
+ATOM N    NH1    -0.47  !     |       
+ATOM H    H       0.31  !  HN-N       
+ATOM CA   CT1     0.07  !     |   HB1
+ATOM HA   HB      0.09  !     |   |  
+GROUP                   !  HA-CA--CB--SG*
+ATOM CB   CT2    -0.11  !     |   |     
+ATOM HB1  HA      0.09  !     |   HB2    
+ATOM HB2  HA      0.09  !   O=C           
+ATOM SG   S      -0.07  !     |           
+GROUP   
+ATOM C    C       0.51
+ATOM O    O      -0.51
+BOND CB CA   SG CB   N H   N  CA   
+BOND C  CA   C +N  CA HA  CB HB1   
+BOND CB HB2 
+DOUBLE O  C   
+IMPR N -C CA H   C CA +N O   
+DONOR H  N   
+ACCEPTOR O C   
+IC -C   CA   *N   H     1.3479 123.9300  180.0000 114.7700  0.9982
+IC -C   N    CA   C     1.3479 123.9300  180.0000 105.8900  1.5202
+IC N    CA   C    +N    1.4533 105.8900  180.0000 118.3000  1.3498
+IC +N   CA   *C   O     1.3498 118.3000  180.0000 120.5900  1.2306
+IC CA   C    +N   +CA   1.5202 118.3000  180.0000 124.5000  1.4548
+IC N    C    *CA  CB    1.4533 105.8900  121.7900 111.9800  1.5584
+IC N    C    *CA  HA    1.4533 105.8900 -116.3400 107.7100  1.0837
+IC N    CA   CB   SG    1.4533 111.5600  180.0000 113.8700  1.8359
+IC SG   CA   *CB  HB1   1.8359 113.8700  119.9100 107.2400  1.1134
+IC SG   CA   *CB  HB2   1.8359 113.8700 -125.3200 109.8200  1.1124
+
+!^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+! patch
+PRES CYSR         0.00
+GROUP                   !     |
+ATOM CB   CT2    -0.11  !  HN-N
+ATOM HB1  HA      0.09  !     |   HB1
+ATOM HB2  HA      0.09  !     |   |
+ATOM SG   S      -0.07  !  HA-CA--CB--SG*
+DELETE ATOM HG1         !     |   |
+                        !     |   HB2
+                        !   O=C
+                        !     |
+
+END
