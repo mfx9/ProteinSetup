@@ -5,8 +5,6 @@
 #                          Mikolaj J. Feliks (2014)
 # . License   : CeCILL French Free Software License     (http://www.cecill.info)
 #-------------------------------------------------------------------------------
-
-
 import exceptions, os, getpass, time
 
 from pBabel            import PDBFile_FromSystem, XYZFile_FromSystem

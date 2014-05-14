@@ -23,5 +23,4 @@ use in QC/MM calculations.
 The method UpdateSystem should be used anytime a ProteinSetup is unpickled.
 """
 
-
 from ProteinSetup       import ProteinSetup, MakeScratch
