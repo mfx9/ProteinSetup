@@ -191,7 +191,7 @@ class ProteinSetup (object):
 
         roundCharge = round (totalCharge)
         if abs (roundCharge - totalCharge) > 0.001:
-          raise ProteinSetupError ("The calculated total charge of the QC-region is not integral.")
+          raise ProteinSetupError ("The calculated total charge of the QC-region (%f) is not integral." % totalCharge)
 
         self.charge = int (roundCharge)
 
