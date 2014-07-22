@@ -278,7 +278,7 @@ class ProteinSetup (object):
       for atomIndex in self.indicesRestrained:
         restraint = self.restraints[atomIndex]
         model     = SoftConstraintEnergyModelHarmonic (0.0, restraint)
-        container["restr%s" % atomIndex] = SoftConstraintTether (atomIndex, self.reference.GetRow (atomIndex), model)
+        container["restr%s" % atomIndex] = SoftConstraintTether (atomIndex, self.reference[atomIndex] model)
       return container
 
 
