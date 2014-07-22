@@ -95,7 +95,7 @@ class ProteinSetup (object):
     for (key, value) in                 keywordArguments.iteritems (): setattr (self, key, value)
 
 
-  def Initialize (self, system, quantumResidues, log = logFile):
+  def Initialize (self, system, quantumResidues, centerResidues = None, log = logFile):
     """Calculates restraints and total charge of the QC-region."""
     if not self.isInitialized:
 
@@ -104,7 +104,6 @@ class ProteinSetup (object):
 
       for quantumResidue in quantumResidues:
         segName, resName, resNum = quantumResidue[:3]
-
         if len (quantumResidue) > 3:
           atomNames = quantumResidue[3]
         else:
@@ -129,6 +128,29 @@ class ProteinSetup (object):
       self.indicesQuantum.sort ()
 
 
+      # Center the restraints on selected residues rather than the QC-region?
+      if not centerResidues:
+        indicesCenter = self.indicesQuantum
+      else:
+        indicesCenter = []
+        for centerResidue in centerResidues:
+          segName, resName, resNum = centerResidue[:3]
+
+          segment = system.sequence.childIndex[segName]
+          residue = segment.childIndex["%s.%s" % (resName, resNum)]
+
+          if len (centerResidue) > 3:
+            names = centerResidue[3]
+            atoms = []
+            for atom in residue.children:
+              if atom.label in names:
+                atoms.append (atom)
+          else:
+            atoms = residue.children
+          for atom in atoms:
+            indicesCenter.append (atom.index)
+
+
       # Determine restrained atoms and calculate restraints
       self.restraints        = []
       self.indicesFlexible   = []
@@ -139,10 +161,10 @@ class ProteinSetup (object):
       for atomIndex in range (0, natoms):
         restr = 0.0
 
-        if not atomIndex in self.indicesQuantum:
+        if not atomIndex in indicesCenter:
           distances = []
 
-          for atomIndexQuantum in self.indicesQuantum:
+          for atomIndexQuantum in indicesCenter:
             distance = system.coordinates3.Distance (atomIndex, atomIndexQuantum)
             distances.append (distance)
 
@@ -159,8 +181,6 @@ class ProteinSetup (object):
         else:
           self.indicesFlexible.append (atomIndex)
         self.restraints.append (restr)
-
-      # self.reference = system.coordinates3[:]
       self.reference = Clone (system.coordinates3)
 
 
